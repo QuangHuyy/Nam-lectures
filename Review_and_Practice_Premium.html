@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review & Practice - Units 3 & 4</title>
+    <style>
+        :root {
+            --primary-color: #2b6cb0;
+            --secondary-color: #319795;
+            --bg-color: #f7fafc;
+            --card-bg: #ffffff;
+            --text-color: #2d3748;
+            --success-color: #38a169;
+            --error-color: #e53e3e;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px 10px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .section-panel {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-title {
+            font-size: 18px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .instruction {
+            font-style: italic;
+            font-size: 14px;
+            color: #4a5568;
+            margin-bottom: 20px;
+            background: #ebf8ff;
+            padding: 10px 15px;
+            border-left: 4px solid var(--primary-color);
+            border-radius: 0 6px 6px 0;
+        }
+
+        .question-block {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        .option-item {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            background: #f8fafc;
+            padding: 10px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .option-item input {
+            margin-right: 12px;
+            transform: scale(1.2);
+        }
+
+        .input-text {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        .grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .grid-table th,
+        .grid-table td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: center;
+        }
+
+        .grid-table td:first-child {
+            text-align: left;
+            font-weight: 600;
+            background-color: #f8fafc;
+        }
+
+        .passage-box {
+            background: #f7fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 15px;
+            border-top: 4px solid var(--secondary-color);
+        }
+
+        .inline-input {
+            width: 110px;
+            padding: 4px 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            text-align: center;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 0 4px;
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .result-panel {
+            display: none;
+            background: #fff;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-top: 6px solid var(--success-color);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .result-score {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--success-color);
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .feedback-valid {
+            color: var(--success-color);
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        .feedback-invalid {
+            color: var(--error-color);
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        .correct-ans-show {
+            background: #f0fff4;
+            color: #276749;
+            padding: 6px 12px;
+            border-radius: 6px;
+            margin-top: 5px;
+            font-size: 13px;
+            display: inline-block;
+        }
+
+        .word-bank {
+            background: #fffaf0;
+            border: 1px dashed #dd6b20;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 600;
+            color: #dd6b20;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1>REVIEW AND PRACTICE - UNITS 3 & 4</h1>
+            <p>Hệ thống bài tập tự động chấm điểm hoàn chỉnh (5 bài - 56 câu hỏi)</p>
+        </header>
+
+        <div id="resultBox" class="result-panel">
+            <h2 style="text-align: center;">KẾT QUẢ BÀI LÀM</h2>
+            <div id="scoreText" class="result-score">0 / 56</div>
+            <p style="text-align: center; color: #718096;" id="percentageText">0%</p>
+        </div>
+
+        <form id="quizForm">
+            <!-- BÀI 1: GRAMMAR - TICK CORRECT -->
+            <div class="section-panel">
+                <div class="section-title">Grammar - Exercise 1</div>
+                <div class="instruction">Tick (✓) the correct sentences.</div>
+
+                <div class="question-block" id="q_g1_1">
+                    <div class="question-text">1. Choose the correct sentence:</div>
+                    <label class="option-item"><input type="radio" name="g1_1" value="a"> I never finish work at 5.00
+                        p.m.</label>
+                    <label class="option-item"><input type="radio" name="g1_1" value="b"> I don't never finish work at
+                        5.00 p.m.</label>
+                    <label class="option-item"><input type="radio" name="g1_1" value="c"> I don't finish work never at
+                        5.00 p.m.</label>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question-block" id="q_g1_2">
+                    <div class="question-text">2. Choose the correct sentence:</div>
+                    <label class="option-item"><input type="radio" name="g1_2" value="a"> He don't go to bed
+                        early.</label>
+                    <label class="option-item"><input type="radio" name="g1_2" value="b"> He not go to bed
+                        early.</label>
+                    <label class="option-item"><input type="radio" name="g1_2" value="c"> He doesn't go to bed
+                        early.</label>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question-block" id="q_g1_3">
+                    <div class="question-text">3. Choose the correct sentence:</div>
+                    <label class="option-item"><input type="radio" name="g1_3" value="a"> Do you go to work by
+                        car?</label>
+                    <label class="option-item"><input type="radio" name="g1_3" value="b"> Does you go to work by
+                        car?</label>
+                    <label class="option-item"><input type="radio" name="g1_3" value="c"> When you do go to work by
+                        car?</label>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question-block" id="q_g1_4">
+                    <div class="question-text">4. Choose the correct sentence:</div>
+                    <label class="option-item"><input type="radio" name="g1_4" value="a"> We often has eggs for
+                        breakfast.</label>
+                    <label class="option-item"><input type="radio" name="g1_4" value="b"> We often have eggs for
+                        breakfast.</label>
+                    <label class="option-item"><input type="radio" name="g1_4" value="c"> We have often eggs for
+                        breakfast.</label>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question-block" id="q_g1_5">
+                    <div class="question-text">5. Choose the correct sentence:</div>
+                    <label class="option-item"><input type="radio" name="g1_5" value="a"> Why do you live with?</label>
+                    <label class="option-item"><input type="radio" name="g1_5" value="b"> Who do you live with?</label>
+                    <label class="option-item"><input type="radio" name="g1_5" value="c"> How do you live with?</label>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question-block" id="q_g1_6">
+                    <div class="question-text">6. Choose the correct sentence:</div>
+                    <label class="option-item"><input type="radio" name="g1_6" value="a"> When they do get up?</label>
+                    <label class="option-item"><input type="radio" name="g1_6" value="b"> When they get up?</label>
+                    <label class="option-item"><input type="radio" name="g1_6" value="c"> When do they get up?</label>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question-block" id="q_g1_7">
+                    <div class="question-text">7. Choose the correct sentence:</div>
+                    <label class="option-item"><input type="radio" name="g1_7" value="a"> She work in a restaurant in
+                        the evening.</label>
+                    <label class="option-item"><input type="radio" name="g1_7" value="b"> She do work in a restaurant in
+                        the evening.</label>
+                    <label class="option-item"><input type="radio" name="g1_7" value="c"> She works in a restaurant in
+                        the evening.</label>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question-block" id="q_g1_8">
+                    <div class="question-text">8. Choose the correct sentence:</div>
+                    <label class="option-item"><input type="radio" name="g1_8" value="a"> Goes he to the gym after
+                        work?</label>
+                    <label class="option-item"><input type="radio" name="g1_8" value="b"> Does he to the gym after
+                        work?</label>
+                    <label class="option-item"><input type="radio" name="g1_8" value="c"> Does he go to the gym after
+                        work?</label>
+                    <div class="feedback"></div>
+                </div>
+            </div>
+
+            <!-- BÀI 2: GRAMMAR - WORD ORDER -->
+            <div class="section-panel">
+                <div class="section-title">Grammar - Exercise 2</div>
+                <div class="instruction">Order the words to make questions and sentences.</div>
+
+                <div class="question-block" id="q_g2_1">
+                    <div class="question-text">1. your / do / go / children / where / school / to</div><input
+                        type="text" class="input-text" name="g2_1">
+                    <div class="feedback"></div>
+                </div>
+                <div class="question-block" id="q_g2_2">
+                    <div class="question-text">2. have / she / at / does / lunch / home</div><input type="text"
+                        class="input-text" name="g2_2">
+                    <div class="feedback"></div>
+                </div>
+                <div class="question-block" id="q_g2_3">
+                    <div class="question-text">3. always / dinner / we / eat / vegetables / for</div><input type="text"
+                        class="input-text" name="g2_3">
+                    <div class="feedback"></div>
+                </div>
+                <div class="question-block" id="q_g2_4">
+                    <div class="question-text">4. get / time / what / weekend / do / up / the / you / at</div><input
+                        type="text" class="input-text" name="g2_4">
+                    <div class="feedback"></div>
+                </div>
+                <div class="question-block" id="q_g2_5">
+                    <div class="question-text">5. don't / shopping / I / Saturday / go / on</div><input type="text"
+                        class="input-text" name="g2_5">
+                    <div class="feedback"></div>
+                </div>
+                <div class="question-block" id="q_g2_6">
+                    <div class="question-text">6. the / he / book / sometimes / a / reads / train / on</div><input
+                        type="text" class="input-text" name="g2_6">
+                    <div class="feedback"></div>
+                </div>
+                <div class="question-block" id="q_g2_7">
+                    <div class="question-text">7. Monday / quiet / restaurant / is / on / often / the</div><input
+                        type="text" class="input-text" name="g2_7">
+                    <div class="feedback"></div>
+                </div>
+                <div class="question-block" id="q_g2_8">
+                    <div class="question-text">8. in / radio / do / listen / to / you / the / morning / the</div><input
+                        type="text" class="input-text" name="g2_8">
+                    <div class="feedback"></div>
+                </div>
+                <div class="question-block" id="q_g2_9">
+                    <div class="question-text">9. old / brother's / is / how / your / girlfriend</div><input type="text"
+                        class="input-text" name="g2_9">
+                    <div class="feedback"></div>
+                </div>
+                <div class="question-block" id="q_g2_10">
+                    <div class="question-text">10. the / never / exercise / Simon / weekend / does / at</div><input
+                        type="text" class="input-text" name="g2_10">
+                    <div class="feedback"></div>
+                </div>
+            </div>
+
+            <!-- BÀI 3: GRAMMAR - LIFE ON MUCK -->
+            <div class="section-panel">
+                <div class="section-title">Grammar - Exercise 3</div>
+                <div class="instruction">Complete the text with the correct form of the verbs in brackets.</div>
+                <div class="passage-box">
+                    <strong>Life on Muck</strong><br>
+                    This is Laura Marriner. She lives and works on the very small island of Muck in Scotland. Life isn't
+                    easy, but it's very interesting ...<br><br>
+                    What 1 <input type="text" class="inline-input" id="g3_1"> (be) Laura's job? She's a teacher. Her
+                    school only 2 <input type="text" class="inline-input" id="g3_2"> (have) eight children.<br><br>
+                    Where 3 <input type="text" class="inline-input" id="g3_3"> she 4 <input type="text"
+                        class="inline-input" id="g3_4"> (live)? Laura 5 <input type="text" class="inline-input"
+                        id="g3_5"> (not leave) home in the morning because she lives in the school with her husband and
+                    two sons!<br><br>
+                    How 6 <input type="text" class="inline-input" id="g3_6"> they 7 <input type="text"
+                        class="inline-input" id="g3_7"> (go) shopping? By ferry. The journey is two hours, but people on
+                    the island only 8 <input type="text" class="inline-input" id="g3_8"> (use) the ferry when the
+                    weather is good. They 9 <input type="text" class="inline-input" id="g3_9"> (not go) shopping every
+                    day, so Laura 10 <input type="text" class="inline-input" id="g3_10"> (make) bread at home.<br><br>
+                    What is school life like on Muck? It's great. The children often 9 <input type="text"
+                        class="inline-input" id="g3_11"> (study) on the beach. 10 <input type="text"
+                        class="inline-input" id="g3_12"> Laura 13 <input type="text" class="inline-input" id="g3_13">
+                    (like) life on Muck? Yes, she does!
+                </div>
+            </div>
+
+            <!-- BÀI 4: VOCABULARY - COLUMNS -->
+            <div class="section-panel">
+                <div class="section-title">Vocabulary - Exercise 1</div>
+                <div class="instruction">Put the words in the correct columns.</div>
+                <table class="grid-table">
+                    <thead>
+                        <tr>
+                            <th>Word</th>
+                            <th>Verbs</th>
+                            <th>Adjectives</th>
+                            <th>Nouns</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="q_v1_1">
+                            <td>finish</td>
+                            <td><input type="radio" name="v1_1" value="verb"></td>
+                            <td><input type="radio" name="v1_1" value="adj"></td>
+                            <td><input type="radio" name="v1_1" value="noun"></td>
+                        </tr>
+                        <tr id="q_v1_2">
+                            <td>get up</td>
+                            <td><input type="radio" name="v1_2" value="verb"></td>
+                            <td><input type="radio" name="v1_2" value="adj"></td>
+                            <td><input type="radio" name="v1_2" value="noun"></td>
+                        </tr>
+                        <tr id="q_v1_3">
+                            <td>know</td>
+                            <td><input type="radio" name="v1_3" value="verb"></td>
+                            <td><input type="radio" name="v1_3" value="adj"></td>
+                            <td><input type="radio" name="v1_3" value="noun"></td>
+                        </tr>
+                        <tr id="q_v1_4">
+                            <td>want</td>
+                            <td><input type="radio" name="v1_4" value="verb"></td>
+                            <td><input type="radio" name="v1_4" value="adj"></td>
+                            <td><input type="radio" name="v1_4" value="noun"></td>
+                        </tr>
+                        <tr id="q_v1_5">
+                            <td>fast</td>
+                            <td><input type="radio" name="v1_5" value="verb"></td>
+                            <td><input type="radio" name="v1_5" value="adj"></td>
+                            <td><input type="radio" name="v1_5" value="noun"></td>
+                        </tr>
+                        <tr id="q_v1_6">
+                            <td>small</td>
+                            <td><input type="radio" name="v1_6" value="verb"></td>
+                            <td><input type="radio" name="v1_6" value="adj"></td>
+                            <td><input type="radio" name="v1_6" value="noun"></td>
+                        </tr>
+                        <tr id="q_v1_7">
+                            <td>noisy</td>
+                            <td><input type="radio" name="v1_7" value="verb"></td>
+                            <td><input type="radio" name="v1_7" value="adj"></td>
+                            <td><input type="radio" name="v1_7" value="noun"></td>
+                        </tr>
+                        <tr id="q_v1_8">
+                            <td>short</td>
+                            <td><input type="radio" name="v1_8" value="verb"></td>
+                            <td><input type="radio" name="v1_8" value="adj"></td>
+                            <td><input type="radio" name="v1_8" value="noun"></td>
+                        </tr>
+                        <tr id="q_v1_9">
+                            <td>cheese</td>
+                            <td><input type="radio" name="v1_9" value="verb"></td>
+                            <td><input type="radio" name="v1_9" value="adj"></td>
+                            <td><input type="radio" name="v1_9" value="noun"></td>
+                        </tr>
+                        <tr id="q_v1_10">
+                            <td>meat</td>
+                            <td><input type="radio" name="v1_10" value="verb"></td>
+                            <td><input type="radio" name="v1_10" value="adj"></td>
+                            <td><input type="radio" name="v1_10" value="noun"></td>
+                        </tr>
+                        <tr id="q_v1_11">
+                            <td>taxi</td>
+                            <td><input type="radio" name="v1_11" value="verb"></td>
+                            <td><input type="radio" name="v1_11" value="adj"></td>
+                            <td><input type="radio" name="v1_11" value="noun"></td>
+                        </tr>
+                        <tr id="q_v1_12">
+                            <td>train</td>
+                            <td><input type="radio" name="v1_12" value="verb"></td>
+                            <td><input type="radio" name="v1_12" value="adj"></td>
+                            <td><input type="radio" name="v1_12" value="noun"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- BÀI 5: VOCABULARY - ODD WORD OUT -->
+            <div class="section-panel">
+                <div class="section-title">Vocabulary - Exercise 2</div>
+                <div class="instruction">Circle the word that is different.</div>
+                <div class="question-block" id="q_v2_1">
+                    <div class="question-text">1. car | lorry | bus | plane</div>
+                    <label class="option-item"><input type="radio" name="v2_1" value="car"> car</label><label
+                        class="option-item"><input type="radio" name="v2_1" value="lorry"> lorry</label><label
+                        class="option-item"><input type="radio" name="v2_1" value="bus"> bus</label><label
+                        class="option-item"><input type="radio" name="v2_1" value="plane"> plane</label>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question-block" id="q_v2_2">
+                    <div class="question-text">2. think | use | slow | make</div>
+                    <label class="option-item"><input type="radio" name="v2_2" value="think"> think</label><label
+                        class="option-item"><input type="radio" name="v2_2" value="use"> use</label><label
+                        class="option-item"><input type="radio" name="v2_2" value="slow"> slow</label><label
+                        class="option-item"><input type="radio" name="v2_2" value="make"> make</label>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question-block" id="q_v2_3">
+                    <div class="question-text">3. Friday | tomorrow | Sunday | Saturday</div>
+                    <label class="option-item"><input type="radio" name="v2_3" value="Friday"> Friday</label><label
+                        class="option-item"><input type="radio" name="v2_3" value="tomorrow"> tomorrow</label><label
+                        class="option-item"><input type="radio" name="v2_3" value="Sunday"> Sunday</label><label
+                        class="option-item"><input type="radio" name="v2_3" value="Saturday"> Saturday</label>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question-block" id="q_v2_4">
+                    <div class="question-text">4. rice | chips | crisps | potatoes</div>
+                    <label class="option-item"><input type="radio" name="v2_4" value="rice"> rice</label><label
+                        class="option-item"><input type="radio" name="v2_4" value="chips"> chips</label><label
+                        class="option-item"><input type="radio" name="v2_4" value="crisps"> crisps</label><label
+                        class="option-item"><input type="radio" name="v2_4" value="potatoes"> potatoes</label>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question-block" id="q_v2_5">
+                    <div class="question-text">5. coffee | milk | fruit | orange juice</div>
+                    <label class="option-item"><input type="radio" name="v2_5" value="coffee"> coffee</label><label
+                        class="option-item"><input type="radio" name="v2_5" value="milk"> milk</label><label
+                        class="option-item"><input type="radio" name="v2_5" value="fruit"> fruit</label><label
+                        class="option-item"><input type="radio" name="v2_5" value="orange juice"> orange juice</label>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question-block" id="q_v2_6">
+                    <div class="question-text">6. clean | horrible | unfriendly | dirty</div>
+                    <label class="option-item"><input type="radio" name="v2_6" value="clean"> clean</label><label
+                        class="option-item"><input type="radio" name="v2_6" value="horrible"> horrible</label><label
+                        class="option-item"><input type="radio" name="v2_6" value="unfriendly"> unfriendly</label><label
+                        class="option-item"><input type="radio" name="v2_6" value="dirty"> dirty</label>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question-block" id="q_v2_7">
+                    <div class="question-text">7. biscuit | pizza | cake | chocolate</div>
+                    <label class="option-item"><input type="radio" name="v2_7" value="biscuit"> biscuit</label><label
+                        class="option-item"><input type="radio" name="v2_7" value="pizza"> pizza</label><label
+                        class="option-item"><input type="radio" name="v2_7" value="cake"> cake</label><label
+                        class="option-item"><input type="radio" name="v2_7" value="chocolate"> chocolate</label>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question-block" id="q_v2_8">
+                    <div class="question-text">8. work | study | change | dinner</div>
+                    <label class="option-item"><input type="radio" name="v2_8" value="work"> work</label><label
+                        class="option-item"><input type="radio" name="v2_8" value="study"> study</label><label
+                        class="option-item"><input type="radio" name="v2_8" value="change"> change</label><label
+                        class="option-item"><input type="radio" name="v2_8" value="dinner"> dinner</label>
+                    <div class="feedback"></div>
+                </div>
+            </div>
+
+            <!-- BÀI 6: VOCABULARY - COMPLETE SENTENCES (BÀI BỊ THIẾU) -->
+            <div class="section-panel">
+                <div class="section-title">Vocabulary - Exercise 3 (MỚI)</div>
+                <div class="instruction">Complete the sentences with the correct words. (Chữ cái đầu đã được cho sẵn)
+                </div>
+                <div class="question-block" id="q_v3_1">
+                    <div class="question-text">1. What time do you g_ _ home after work?</div><input type="text"
+                        class="input-text" id="v3_1" value="get" disabled>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question-block" id="q_v3_2">
+                    <div class="question-text">2. He usually l_ _ _ _ _ _ to the radio at work.</div><input type="text"
+                        class="input-text" id="v3_2" placeholder="l...">
+                    <div class="feedback"></div>
+                </div>
+                <div class="question-block" id="q_v3_3">
+                    <div class="question-text">3. I always have b_ _ _ _ _ _ _ _ before I leave home in the morning.
+                    </div><input type="text" class="input-text" id="v3_3" placeholder="b...">
+                    <div class="feedback"></div>
+                </div>
+                <div class="question-block" id="q_v3_4">
+                    <div class="question-text">4. They w_ _ _ _ _ television after dinner.</div><input type="text"
+                        class="input-text" id="v3_4" placeholder="w...">
+                    <div class="feedback"></div>
+                </div>
+                <div class="question-block" id="q_v3_5">
+                    <div class="question-text">5. She goes to university by m_ _ _ _ _ _ _ _ . It's very fast.</div>
+                    <input type="text" class="input-text" id="v3_5" placeholder="m...">
+                    <div class="feedback"></div>
+                </div>
+                <div class="question-block" id="q_v3_6">
+                    <div class="question-text">6. In cold weather, I have a h_ _ drink in the evening.</div><input
+                        type="text" class="input-text" id="v3_6" placeholder="h...">
+                    <div class="feedback"></div>
+                </div>
+                <div class="question-block" id="q_v3_7">
+                    <div class="question-text">7. He never says 'hello'. He's so u_ _ _ _ _ _ _ _ .</div><input
+                        type="text" class="input-text" id="v3_7" placeholder="u...">
+                    <div class="feedback"></div>
+                </div>
+                <div class="question-block" id="q_v3_8">
+                    <div class="question-text">8. T_ _ _ _ s in New York are yellow and in London they're black.</div>
+                    <input type="text" class="input-text" id="v3_8" placeholder="T...">
+                    <div class="feedback"></div>
+                </div>
+                <div class="question-block" id="q_v3_9">
+                    <div class="question-text">9. I never drink tea, coffee or soft drinks. I only drink w_ _ _ _ with
+                        meals.</div><input type="text" class="input-text" id="v3_9" placeholder="w...">
+                    <div class="feedback"></div>
+                </div>
+                <div class="question-block" id="q_v3_10">
+                    <div class="question-text">10. On W_ _ _ _ _ _ _ _ evening, I go to the gym.</div><input type="text"
+                        class="input-text" id="v3_10" placeholder="W...">
+                    <div class="feedback"></div>
+                </div>
+            </div>
+
+            <!-- BÀI 7: VOCABULARY - EMAIL -->
+            <div class="section-panel">
+                <div class="section-title">Vocabulary - Exercise 4</div>
+                <div class="instruction">Complete the email with the words in the box.</div>
+                <div class="word-bank">Word Bank: bike | dressed | bread | friendly | get | live | go | evening |
+                    Saturday | read</div>
+                <div class="passage-box" style="border-top-color: #dd6b20;">
+                    Hi Ana,<br><br>
+                    How are you? I'm in Cartagena at my grandmother's house this week. It's nice and quiet here.
+                    I 1 <input type="text" class="inline-input" id="v4_1"> up late every day, have breakfast and get 2
+                    <input type="text" class="inline-input" id="v4_2">.
+                    Then I go to the shops by 3 <input type="text" class="inline-input" id="v4_3">. I usually buy some 4
+                    <input type="text" class="inline-input" id="v4_4"> for lunch.
+                    The people are very 5 <input type="text" class="inline-input" id="v4_5">.<br><br>
+                    In the afternoon, I 6 <input type="text" class="inline-input" id="v4_6"> to the beach and 7 <input
+                        type="text" class="inline-input" id="v4_7"> a book.
+                    In the 8 <input type="text" class="inline-input" id="v4_8">, we sometimes have dinner in a
+                    restaurant.
+                    I'm here for one week, and then I go home on 9 <input type="text" class="inline-input" id="v4_9">...
+                    I want to 10 <input type="text" class="inline-input" id="v4_10"> here!<br><br>
+                    See you soon.<br>Bea
+                </div>
+            </div>
+
+            <div style="margin: 30px 0;"><button type="button" class="btn" onclick="gradeQuiz()">NỘP BÀI & XEM ĐÁP
+                    ÁN</button></div>
+        </form>
+    </div>
+
+    <script>
+        const answerKey = {
+            g1_1: "a", g1_2: "c", g1_3: "a", g1_4: "b", g1_5: "b", g1_6: "c", g1_7: "c", g1_8: "c",
+            g2_1: "Where do your children go to school?", g2_2: "Does she have lunch at home?", g2_3: "We always eat vegetables for dinner.", g2_4: "What time do you get up at the weekend?", g2_5: "I don't go shopping on Saturday.", g2_6: "He sometimes reads a book on the train.", g2_7: "The restaurant is often quiet on Monday.", g2_8: "Do you listen to the radio in the morning?", g2_9: "How old is your brother's girlfriend?", g2_10: "Simon never does exercise at the weekend.",
+            g3_1: "is", g3_2: "has", g3_3: "does", g3_4: "live", g3_5: "doesn't leave", g3_6: "do", g3_7: "go", g3_8: "use", g3_9: "don't go", g3_10: "makes", g3_11: "study", g3_12: "Does", g3_13: "like",
+            v1_1: "verb", v1_2: "verb", v1_3: "verb", v1_4: "verb", v1_5: "adj", v1_6: "adj", v1_7: "adj", v1_8: "adj", v1_9: "noun", v1_10: "noun", v1_11: "noun", v1_12: "noun",
+            v2_1: "plane", v2_2: "slow", v2_3: "tomorrow", v2_4: "rice", v2_5: "fruit", v2_6: "clean", v2_7: "pizza", v2_8: "dinner",
+            v3_1: "get", v3_2: "listens", v3_3: "breakfast", v3_4: "watch", v3_5: "motorbike", v3_6: "hot", v3_7: "unfriendly", v3_8: "taxis", v3_9: "water", v3_10: "wednesday",
+            v4_1: "get", v4_2: "dressed", v4_3: "bike", v4_4: "bread", v4_5: "friendly", v4_6: "go", v4_7: "read", v4_8: "evening", v4_9: "saturday", v4_10: "live"
+        };
+
+        function gradeQuiz() {
+            let score = 0;
+            let total = 56;
+
+            // MC Grammar & Odd word out
+            ['g1_1', 'g1_2', 'g1_3', 'g1_4', 'g1_5', 'g1_6', 'g1_7', 'g1_8', 'v2_1', 'v2_2', 'v2_3', 'v2_4', 'v2_5', 'v2_6', 'v2_7', 'v2_8'].forEach(k => {
+                let sel = document.querySelector(`input[name="${k}"]:checked`);
+                let f = document.getElementById('q_' + k).querySelector('.feedback');
+                if (sel && sel.value === answerKey[k]) { score++; f.innerHTML = '<div class="feedback-valid">✓ Đúng</div>'; }
+                else { f.innerHTML = `<div class="feedback-invalid">✗ Sai. Đáp án đúng: ${answerKey[k].toUpperCase()}</div>`; }
+            });
+
+            // Word order
+            for (let i = 1; i <= 10; i++) {
+                let k = 'g2_' + i; let val = document.getElementById('q_' + k).querySelector('input').value.trim();
+                let f = document.getElementById('q_' + k).querySelector('.feedback');
+                if (val.toLowerCase().replace(/\s+/g, '') === answerKey[k].toLowerCase().replace(/\s+/g, '')) { score++; f.innerHTML = '<div class="feedback-valid">✓ Đúng</div>'; }
+                else { f.innerHTML = `<div class="feedback-invalid">✗ Sai. Đáp án: ${answerKey[k]}</div>`; }
+            }
+
+            // Matrix Grid
+            for (let i = 1; i <= 12; i++) {
+                let k = 'v1_' + i; let sel = document.querySelector(`input[name="${k}"]:checked`);
+                let r = document.getElementById('q_' + k);
+                if (sel && sel.value === answerKey[k]) { score++; r.style.backgroundColor = '#f0fff4'; }
+                else { r.style.backgroundColor = '#fff5f5'; }
+            }
+
+            // Vocabulary sentence fields (v3_)
+            for (let i = 1; i <= 10; i++) {
+                let k = 'v3_' + i; let input = document.getElementById(k); let val = input.value.trim().toLowerCase();
+                let f = document.getElementById('q_' + k).querySelector('.feedback');
+                if (val === answerKey[k]) { score++; f.innerHTML = '<div class="feedback-valid">✓ Đúng</div>'; input.style.backgroundColor = '#f0fff4'; }
+                else { f.innerHTML = `<div class="feedback-invalid">✗ Sai. Đáp án: ${answerKey[k]}</div>`; input.style.backgroundColor = '#fff5f5'; }
+            }
+
+            // Inline text parts (g3_ & v4_)
+            ['g3_1', 'g3_2', 'g3_3', 'g3_4', 'g3_5', 'g3_6', 'g3_7', 'g3_8', 'g3_9', 'g3_10', 'g3_11', 'g3_12', 'g3_13', 'v4_1', 'v4_2', 'v4_3', 'v4_4', 'v4_5', 'v4_6', 'v4_7', 'v4_8', 'v4_9', 'v4_10'].forEach(k => {
+                let input = document.getElementById(k); let val = input.value.trim().toLowerCase();
+                if (val === answerKey[k].toLowerCase()) { score++; input.style.backgroundColor = '#f0fff4'; }
+                else { input.style.backgroundColor = '#fff5f5'; input.title = 'Correct: ' + answerKey[k]; }
+            });
+
+            document.getElementById('scoreText').innerText = `${score} / ${total}`;
+            document.getElementById('percentageText').innerText = `Tỷ lệ chính xác: ${Math.round(score / total * 100)}%`;
+            document.getElementById('resultBox').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+
+</html>
